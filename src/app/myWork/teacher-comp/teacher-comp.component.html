@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <th></th>
+        <th>Id</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Age</th>
+        <th>Group</th>
+        <th></th>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let teacher of teachers">
+          <td><button class="btn btn-dark" (click)="edit(teacher.id)">Изменить</button></td>
+          <td>{{teacher.id}}</td>
+
+          <td *ngIf="editRowId === teacher.id">
+            <input type="text" class="form-control" id="firstName" required [(ngModel)]="teacher.firstName"
+              #firstName="ngModel">
+          </td>
+
+          <td *ngIf="editRowId !== teacher.id">{{teacher.firstName}}</td>
+
+          <td *ngIf="editRowId === teacher.id">
+            <input type="text" class="form-control" id="lastName" required [(ngModel)]="teacher.lastName"
+              #lastName="ngModel">
+          </td>
+
+          <td *ngIf="editRowId !== teacher.id">{{teacher.lastName}}</td>
+
+          <td *ngIf="editRowId === teacher.id">
+            <input type="number" class="form-control" id="age" required [(ngModel)]="teacher.age" #age="ngModel">
+          </td>
+
+          <td *ngIf="editRowId !== teacher.id">{{teacher.age}}</td>
+
+          <td *ngIf="editRowId === teacher.id">
+            <input type="text" class="form-control" id="group" required [(ngModel)]="teacher.group" #group="ngModel">
+          </td>
+
+          <td *ngIf="editRowId !== teacher.id">{{teacher.group}}</td>
+
+          <td>
+            <button class="btn btn-success" (click)="edit('')" *ngIf="editRowId === teacher.id">Save</button>
+          </td>
+
+          <td>
+            <button class="btn btn-danger" (click)="remove(teacher.id)" *ngIf="editRowId !== teacher.id">Remove</button>
+          </td>
+
+        </tr>
+      </tbody>
+
+    </table>
+
+    <button class="btn btn-success" routerLink="/newTeacher">Создать нового</button>
+  </div>
+</div>
